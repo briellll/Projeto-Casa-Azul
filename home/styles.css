@@ -15,6 +15,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: white;
+    border-radius: 8px;
 }
 
 .header {
@@ -46,6 +47,34 @@ body {
 .nav a:hover {
     background-color: #d0d0d0;
     border-radius: 4px;
+}
+
+.slider {
+    position: relative;
+    width: 50%;
+    max-width: 50%;
+    margin: auto;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
 }
 
 .main-content {
