@@ -621,53 +621,82 @@ h1, h2, h3, h4{
 
 
 /*======================Direitos========================*/
-#direitos{
+#direitos {
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
     background: var(--bg-primary-color);
     min-height: 100vh;
-    padding-top: 0.5rem;
-}
-  
-.project{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(250px, auto);
-    grid-gap: 0.9rem;
-    background: var(--bg-primary-color);
-}
-  
-.card .project-bio p{
-    font-size: 0.83rem;
-    margin-bottom: 0rem;
-}
-  
-.card .project-bio h3{
-    font-size: 0.9rem;
 }
 
-.card .project-bio .link-hover{
-    font-size: 0.83rem;
+/* Cabeçalho da seção */
+.works-header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
-  
-.project-info{
+
+/* Parágrafo inicial */
+.bio.container {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+/* Wrapper da lista de direitos */
+.rights-list-wrapper {
     display: flex;
-    justify-content: space-between;
-    opacity: 0;
-    position: relative;
-    transition: 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
 }
-  
-.project-bio{
+
+/* Lista de direitos */
+.rights-list {
+    background: var(--primary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    list-style: none;
+    max-width: 800px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Itens da lista de direitos */
+.rights-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+/* Ícones dos direitos */
+.rights-list li i {
+    font-size: 2rem;
+    margin-right: 1rem;
+    color: #ffdd57; /* Cor do ícone */
+}
+
+/* Texto dos direitos */
+.right-text {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
-    top: 140px;
-    left: 10px;
 }
+
+/* Títulos dos direitos */
+.right-text h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Descrições dos direitos */
+.right-text p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Remove a margem inferior do último item */
+.rights-list li:last-child {
+    margin-bottom: 0;
+}
+
 
 /*===========Projetos==========*/
 #projetos{
