@@ -537,8 +537,8 @@ h1, h2, h3, h4{
 .atendimentos-tipos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem; 
-    max-width: 850px; 
+    gap: 1.5rem; /* Aumenta o espaçamento entre os itens */
+    max-width: 1000px; /* Aumenta a largura máxima */
     width: 100%; 
 }
 
@@ -553,19 +553,36 @@ h1, h2, h3, h4{
     text-align: center;
     font-size: 1.2rem;
     height: 200px;
-    width: 200px;
+    width: 100%; /* Ajusta a largura para preencher a coluna */
     box-sizing: border-box;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+    padding: 1rem; /* Adiciona padding para espaçamento interno */
 }
 
 .tipo-atendimento i {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; /* Reduz a margem inferior */
+    color: var(--highlight-color); /* Adiciona cor ao ícone */
 }
 
 .tipo-atendimento:hover {
-    transform: scale(1.1); 
+    transform: scale(1.05); /* Suaviza o efeito de zoom */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
 }
+
+/* Títulos dos tipos de atendimento */
+.tipo-atendimento h4 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Descrições dos tipos de atendimento */
+.tipo-atendimento p {
+    font-size: 1rem;
+    margin: 0;
+}
+
 
 /*=============================Eventos========================*/
 #eventos{
