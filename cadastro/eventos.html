@@ -13,37 +13,37 @@
   <nav id="navbar-scroll" class="navbar">
 
     <h1 class="logo">
-      <a href="index.html">Casa Azul</a>
+      <a href="../index.html">Casa Azul</a>
     </h1>
 
     <div id="menu">
       <ul class="nav-menu">
         <li class="nav-items">
-          <a href="#hero" class="nav-link active"><i class="nav-icon fas fa-home"></i>Home</a>
+          <a href="../index.html#hero" class="nav-link active"><i class="nav-icon fas fa-home"></i>Home</a>
         </li>
 
         <li class="nav-items">
-          <a href="#atendimentos" class="nav-link"><i class="nav-icon fas fa-plus-square"></i>Atendimentos</a>
+          <a href="../index.html#atendimentos" class="nav-link"><i class="nav-icon fas fa-plus-square"></i>Atendimentos</a>
         </li>
 
         <li class="nav-items">
-          <a href="#eventos" class="nav-link"><i class="nav-icon fas fa-calendar"></i>Eventos</a>
+          <a href="../index.html#eventos" class="nav-link"><i class="nav-icon fas fa-calendar"></i>Eventos</a>
         </li>
 
         <li class="nav-items">
-          <a href="#colaboradores" class="nav-link"><i class="nav-icon fas fa-users"></i>Colaboradores</a>
+          <a href="../index.html#colaboradores" class="nav-link"><i class="nav-icon fas fa-users"></i>Colaboradores</a>
         </li>
 
         <li class="nav-items">
-          <a href="#direitos" class="nav-link"><i class="nav-icon fas fa-book"></i>Direitos</a>
+          <a href="../index.html#direitos" class="nav-link"><i class="nav-icon fas fa-book"></i>Direitos</a>
         </li>
 
         <li class="nav-items">
-          <a href="#projetos" class="nav-link"><i class="nav-icon fas fa-rss"></i>Projetos</a>
+          <a href="../index.html#projetos" class="nav-link"><i class="nav-icon fas fa-rss"></i>Projetos</a>
         </li>
 
         <li class="nav-items">
-          <a href="#contact" class="nav-link"><i class="nav-icon fas fa-envelope"></i>Doações</a>
+          <a href="../index.html#contact" class="nav-link"><i class="nav-icon fas fa-envelope"></i>Doações</a>
         </li>
 
         <li class="nav-items">
@@ -90,6 +90,9 @@
     <button type="submit">Cadastrar Evento</button>
   </form>
 
+  <h2>Eventos recentes</h2>
+  <ul id="lista-eventos"></ul>
+
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 
@@ -124,14 +127,38 @@
         local: localEvento,
         descricao: descricaoEvento
       })
-        .then(function (docRef) {
-          console.log("Documento adicionado com ID: ", docRef.id);
+        .then(function () {
+          console.log("Documento adicionado com Sucesso");
           document.getElementById("formulario-cadastro").reset();
+          location.reload();
         })
         .catch(function (error) {
           console.error("Erro ao adicionar documento: ", error);
         });
     });
+
+    function exibirUltimosEventos() {
+      db.collection("Eventos")
+        .orderBy("data", "desc")
+        .limit(5)
+        .get()
+        .then(function (querySnapshot) {
+          const listaEventos = document.getElementById("lista-eventos");
+          listaEventos.innerHTML = ""; 
+          querySnapshot.forEach(function (doc) {
+            const evento = doc.data();
+            const li = document.createElement("li");
+            li.textContent = `Nome: ${evento.nome}, Data: ${evento.data}, Hora: ${evento.hora}, Local: ${evento.local}, Descrição: ${evento.descricao}`;
+            listaEventos.appendChild(li);
+          });
+        })
+        .catch(function (error) {
+          console.error("Erro ao buscar documentos: ", error);
+        });
+    }
+
+    exibirUltimosEventos();
+
   </script>
 </body>
 
