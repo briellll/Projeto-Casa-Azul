@@ -632,13 +632,13 @@ h1, h2, h3, h4{
 /* Cabeçalho da seção */
 .works-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Parágrafo inicial */
 .bio.container {
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 /* Wrapper da lista de direitos */
@@ -657,45 +657,50 @@ h1, h2, h3, h4{
     max-width: 800px;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 1.5rem; /* Espaçamento entre os itens */
+    margin: 0 auto; /* Centraliza a lista */
 }
 
 /* Itens da lista de direitos */
 .rights-list li {
     display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
+    align-items: center; /* Alinhar os itens verticalmente */
+    background: var(--bg-primary-color); /* Cor de fundo do item */
+    border-radius: 8px;
+    padding: 1rem;
+    width: calc(100% - 0.75rem); /* Metade da largura da lista, menos o espaçamento entre os itens */
 }
 
 /* Ícones dos direitos */
 .rights-list li i {
     font-size: 2rem;
     margin-right: 1rem;
-    color: #ffdd57; /* Cor do ícone */
-}
-
-/* Texto dos direitos */
-.right-text {
-    display: flex;
-    flex-direction: column;
+    color: var(--primary-color); /* Cor do ícone */
 }
 
 /* Títulos dos direitos */
 .right-text h3 {
     margin: 0;
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 /* Descrições dos direitos */
 .right-text p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    flex: 1; /* Ocupa o restante do espaço disponível */
 }
 
 /* Remove a margem inferior do último item */
 .rights-list li:last-child {
     margin-bottom: 0;
 }
+
 
 
 /*===========Projetos==========*/
