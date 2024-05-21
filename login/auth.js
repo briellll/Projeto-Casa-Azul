@@ -1,8 +1,6 @@
-/* Importação do firebase */
-
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBnZ5hjZkaSYWCyFTFlX8oj0R2oTmoG8JQ",
   authDomain: "site-casa-azul.firebaseapp.com",
@@ -14,3 +12,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
