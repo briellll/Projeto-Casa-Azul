@@ -11,8 +11,63 @@
 <body>
   <!--Barra de Navegação-->
   <nav id="navbar-scroll" class="navbar">
-    <!-- Conteúdo da barra de navegação -->
-  </nav>
+
+    <h1 class="logo">
+      <a href="index.html">Casa Azul</a>
+    </h1>
+
+    <div id="menu">
+      <ul class="nav-menu">
+        <li class="nav-items">
+          <a href="#hero" class="nav-link active"><i class="nav-icon fas fa-home"></i>Home</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#atendimentos" class="nav-link"><i class="nav-icon fas fa-plus-square"></i>Atendimentos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#eventos" class="nav-link"><i class="nav-icon fas fa-calendar"></i>Eventos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#colaboradores" class="nav-link"><i class="nav-icon fas fa-users"></i>Colaboradores</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#direitos" class="nav-link"><i class="nav-icon fas fa-book"></i>Direitos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#projetos" class="nav-link"><i class="nav-icon fas fa-rss"></i>Projetos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="#contact" class="nav-link"><i class="nav-icon fas fa-envelope"></i>Doações</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="login/login.html" class="nav-link"><i class="nav-icon fas fa-user"></i>Login</a>
+        </li>
+
+        <div class="theme-switch-wrapper">
+          <i class="nav-icon fas fa-sun"></i>
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+          </label>
+          <i class="nav-icon fas fa-moon"></i>
+        </div>
+      </ul>
+
+  <!--Verificar-->
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav> 
 
   <h1 id="titulo-cadastro">Cadastro de Eventos</h1>
 
@@ -35,12 +90,10 @@
     <button type="submit">Cadastrar Evento</button>
   </form>
 
-  <!-- Importe o Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Configure o Firebase com suas credenciais
     const firebaseConfig = {
       apiKey: "AIzaSyBnZ5hjZkaSYWCyFTFlX8oj0R2oTmoG8JQ",
       authDomain: "site-casa-azul.firebaseapp.com",
@@ -51,24 +104,19 @@
     };
 
 
-    // Inicialize o Firebase
     firebase.initializeApp(firebaseConfig);
 
-    // Obtenha uma referência para o Firestore
     const db = firebase.firestore();
 
-    // Captura o formulário quando enviado
     document.getElementById("formulario-cadastro").addEventListener("submit", function (event) {
-      event.preventDefault(); // Evita o comportamento padrão de recarregar a página
+      event.preventDefault(); 
 
-      // Captura os valores do formulário
       const nomeEvento = document.getElementById("nomeEvento").value;
       const dataEvento = document.getElementById("dataEvento").value;
       const horaEvento = document.getElementById("horaEvento").value;
       const localEvento = document.getElementById("localEvento").value;
       const descricaoEvento = document.getElementById("descricaoEvento").value;
 
-      // Adiciona os dados ao Firestore
       db.collection("Eventos").doc(dataEvento).set({
         nome: nomeEvento,
         data: dataEvento,
@@ -78,7 +126,6 @@
       })
         .then(function (docRef) {
           console.log("Documento adicionado com ID: ", docRef.id);
-          // Limpa os campos do formulário após o envio
           document.getElementById("formulario-cadastro").reset();
         })
         .catch(function (error) {
