@@ -529,6 +529,25 @@ h1, h2, h3, h4{
     max-width: 1000px;
 }
 
+.atendimentos-tipos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .tipo-atendimento {
+    background: var(--primary-color);
+    color: var(--text-blog-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
 
 /*=============================Eventos========================*/
 #eventos{
