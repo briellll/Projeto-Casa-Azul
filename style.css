@@ -534,6 +534,7 @@ h1, h2, h3, h4{
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     margin-top: 2rem;
+    margin-top: 3.5rem;
 }
 
 .tipo-atendimento {
@@ -549,6 +550,13 @@ h1, h2, h3, h4{
     height: 150px;
     width: 150px;
     box-sizing: border-box; /* Ensures padding is included in height/width */
+    position: relative;
+}
+
+.tipo-atendimento i {
+    position: absolute;
+    top: 20px;
+    font-size: 2rem;
 }
 
 
