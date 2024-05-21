@@ -845,3 +845,26 @@ footer{
     display: block;
     border-radius: 8px;
 }
+
+#titulo-cadastro {
+    margin-top: 100px;
+}
+#formulario-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    margin-top: 20px;
+    width: 20%;
+}
+
+input{
+    border-radius: 5px;
+    padding: 10px;
+}
+
+input, textarea{
+    margin-bottom: 20px;
+}
+
+
