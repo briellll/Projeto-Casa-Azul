@@ -112,33 +112,6 @@
     transform: translateX(5px);
 }
 
-/*Ícones Redes Sociais*/
-.icons a, .icons .icon{
-    font-size: 1.7rem;
-    margin: 0px 5px;
-    padding: 10px 0px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    transition: all 0.3s ease-in-out;
-}
-  
-.icons span:hover, .icons a:hover{
-    border: 1px solid var(--primary-color);
-    background: var(--primary-color);
-    color: #fff;
-}
-
-.icons-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transform: translateX(-80px);
-}
- 
 /*Dark Mode Botão*/
 .theme-switch-wrapper{
     display: flex;
@@ -694,7 +667,7 @@ h1, h2, h3, h4{
 .rights-list li i {
     font-size: 2rem;
     margin-right: 1rem;
-    color: var(--primary-color); /* Cor do ícone */
+    color: var(--text-primary-color); /* Cor do ícone */
 }
 
 /* Títulos dos direitos */
@@ -702,14 +675,14 @@ h1, h2, h3, h4{
     margin: 0;
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
+    color: var(--text-primary-color);
 }
 
 /* Descrições dos direitos */
 .right-text p {
     margin: 0;
     font-size: 0.8rem;
-    color: var(--primary-color);
+    color: var(--text-primary-color);
     flex: 1; /* Ocupa o restante do espaço disponível */
 }
 
