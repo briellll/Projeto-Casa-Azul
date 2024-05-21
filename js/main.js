@@ -84,8 +84,8 @@ let slideIndex = 0;
 
 function showSlides() {
     const slides = document.querySelectorAll('.slide');
-    slides.forEach((slide, index) => {
-        slide.style.display = 'none';
+    slides.forEach((slide) => {
+        slide.classList.remove('active');
     });
 
     slideIndex++;
@@ -93,11 +93,12 @@ function showSlides() {
         slideIndex = 1;
     }
 
-    slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add('active');
     setTimeout(showSlides, 2500);
 }
 
 document.addEventListener('DOMContentLoaded', showSlides);
+
 
 
 

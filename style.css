@@ -714,12 +714,6 @@ h1, h2, h3, h4{
     padding-bottom: 2rem;
 }
 
-/* Cabeçalho da seção de Contato */
-.contact-header {
-    text-align: center;
-    margin-bottom: 2rem; /* Espaço abaixo do cabeçalho */
-}
-
 /* Wrapper para centralizar o conteúdo */
 .donate-content-wrapper {
     display: flex;
@@ -731,44 +725,54 @@ h1, h2, h3, h4{
 /* Conteúdo da doação */
 .donate-content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Limita a largura máxima */
-    padding: 0 20px;
+    max-width: 1200px;
+    padding: 1rem 20px;
     box-sizing: border-box;
 }
 
 /* Imagem de doação */
 .donate-image {
-    flex: 1 1 10%; /* 20% do espaço */
+    flex: 1 1 25%;
     margin-right: 2rem;
-    background-color: #fff; /* Fundo branco */
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 1rem; /* Espaçamento interno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .donate-image img {
     max-width: 100%;
     height: auto;
     display: block;
+    border-radius: 10px;
+}
+
+.donate-image:hover {
+    transform: scale(1.05);
 }
 
 /* Texto e ícones de doação */
 .donate-details {
-    flex: 1 1 50%;
+    flex: 1 1 60%;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
 }
 
 .donate-text {
     text-align: justify;
 }
 
-.donate-text p{
+.donate-text p {
     font-size: 1.1rem;
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--text-primary-color);
 }
 
 /* Ícones de contato */
@@ -779,25 +783,26 @@ h1, h2, h3, h4{
     margin-top: 1rem;
 }
 
-/* Estilização dos ícones de contato */
-.contact-icon {
+.donate-icons .contact-icon {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--text-primary-color);
+    color: var(--primary-color);
     font-size: 1.1rem;
     margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.contact-icon i {
-    font-size: 1.6rem; /* Aumenta o tamanho do ícone */
+.donate-icons .contact-icon i {
+    font-size: 1.6rem;
     margin-right: 0.5rem;
 }
 
-.contact-icon:hover {
+.donate-icons .contact-icon:hover {
     transform: scale(1.1);
+    color: var(--secondary-color);
 }
+
 
 /*=======================Rodapé=======================*/
 footer{
@@ -929,9 +934,9 @@ footer{
   }
 
  /*================Slider===============*/ 
-  .sliderimg {
+ .sliderimg {
     position: relative;
-    width: 50%;
+    width: 100%;
     max-width: 50%;
     margin: auto;
     overflow: hidden;
@@ -939,22 +944,37 @@ footer{
     border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
+    max-height: 500px; /* Define a altura máxima do slider */
 }
 
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    height: 100%; /* Define a altura das slides como 100% do contêiner do slider */
 }
 
 .slide {
     min-width: 100%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center; /* Centraliza a imagem horizontalmente */
+    align-items: center; /* Centraliza a imagem verticalmente */
+    height: 100%; /* Define a altura das slides como 100% do contêiner do slider */
 }
 
 .slide img {
-    width: 100%;
-    display: block;
+    width: auto; /* Mantém a largura automática para evitar distorção */
+    height: 100%; /* Ajusta a altura para 100% do contêiner da slide */
+    object-fit: contain; /* Garante que a imagem se ajuste dentro do contêiner mantendo a proporção */
     border-radius: 8px;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
 }
 
 #titulo-cadastro {
