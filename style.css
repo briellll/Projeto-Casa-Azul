@@ -537,9 +537,9 @@ h1, h2, h3, h4{
 .atendimentos-tipos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem; /* Adjust as necessary */
-    max-width: 850px; /* Limit the width of the grid */
-    width: 100%; /* Ensure the grid takes full width of the container */
+    gap: 1rem; 
+    max-width: 850px; 
+    width: 100%; 
 }
 
 .tipo-atendimento {
@@ -555,11 +555,16 @@ h1, h2, h3, h4{
     height: 200px;
     width: 200px;
     box-sizing: border-box;
+    transition: transform 0.2s ease-in-out;
 }
 
 .tipo-atendimento i {
     font-size: 2rem;
     margin-bottom: 1.5rem;
+}
+
+.tipo-atendimento:hover {
+    transform: scale(1.1); 
 }
 
 /*=============================Eventos========================*/
