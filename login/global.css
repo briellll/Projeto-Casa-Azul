@@ -33,8 +33,8 @@
     --navbar-bg: #1e3a5f; /* Azul escuro */
     --rotate-color: #fff;
     --marker-color: #1e3a5f; /* Azul escuro */
-    --button-bg: #1e3a5f; /* Azul escuro */
-    --button-text: #fff;
+    --button-bg: #f2f2f2; /* Azul escuro */
+    --button-text: #000;
 }
 
 /*Dark Mode Botão*/
