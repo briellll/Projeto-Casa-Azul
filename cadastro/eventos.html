@@ -151,7 +151,7 @@
             eventDiv.classList.add("event");
 
             const eventName = document.createElement("h3");
-            eventName.textContent = `Nome: ${evento.nome}`;
+            eventName.textContent = `${evento.nome}`;
 
             const eventDate = document.createElement("p");
             eventDate.textContent = `Data: ${new Date(evento.data).toLocaleDateString("pt-BR")}`;

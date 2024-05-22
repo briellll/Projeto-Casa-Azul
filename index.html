@@ -193,80 +193,8 @@
                   nosso calendário de eventos.
               </p>
           </div>
-          <div class="events-container">
-              <div class="event">
-                  <h3>Workshop de Inclusão</h3>
-                  <p>Data: 25 de Junho, 2024</p>
-                  <p>Local: Casa Azul</p>
-                  <p>Descrição: Workshop voltado para a inclusão de pessoas com TEA no mercado de trabalho.</p>
-              </div>
-              <div class="event">
-                  <h3>Palestra sobre Autismo</h3>
-                  <p>Data: 10 de Julho, 2024</p>
-                  <p>Local: Auditório Municipal</p>
-                  <p>Descrição: Palestra com especialistas sobre os desafios e avanços no tratamento do autismo.</p>
-              </div>
-              <div class="event">
-                  <h3>Atividade Recreativa</h3>
-                  <p>Data: 18 de Julho, 2024</p>
-                  <p>Local: Parque Central</p>
-                  <p>Descrição: Atividade recreativa para crianças com TEA e suas famílias.</p>
-              </div>
-              <div class="event">
-                  <h3>Seminário Educacional</h3>
-                  <p>Data: 5 de Agosto, 2024</p>
-                  <p>Local: Universidade X</p>
-                  <p>Descrição: Seminário sobre técnicas de ensino para crianças com TEA.</p>
-              </div>
-              <div class="event">
-                <h3>Workshop de Inclusão</h3>
-                <p>Data: 25 de Junho, 2024</p>
-                <p>Local: Casa Azul</p>
-                <p>Descrição: Workshop voltado para a inclusão de pessoas com TEA no mercado de trabalho.</p>
-            </div>
-            <div class="event">
-                <h3>Palestra sobre Autismo</h3>
-                <p>Data: 10 de Julho, 2024</p>
-                <p>Local: Auditório Municipal</p>
-                <p>Descrição: Palestra com especialistas sobre os desafios e avanços no tratamento do autismo.</p>
-            </div>
-            <div class="event">
-                <h3>Atividade Recreativa</h3>
-                <p>Data: 18 de Julho, 2024</p>
-                <p>Local: Parque Central</p>
-                <p>Descrição: Atividade recreativa para crianças com TEA e suas famílias.</p>
-            </div>
-            <div class="event">
-                <h3>Seminário Educacional</h3>
-                <p>Data: 5 de Agosto, 2024</p>
-                <p>Local: Universidade X</p>
-                <p>Descrição: Seminário sobre técnicas de ensino para crianças com TEA.</p>
-            </div>
-            <div class="event">
-              <h3>Workshop de Inclusão</h3>
-              <p>Data: 25 de Junho, 2024</p>
-              <p>Local: Casa Azul</p>
-              <p>Descrição: Workshop voltado para a inclusão de pessoas com TEA no mercado de trabalho.</p>
-          </div>
-          <div class="event">
-              <h3>Palestra sobre Autismo</h3>
-              <p>Data: 10 de Julho, 2024</p>
-              <p>Local: Auditório Municipal</p>
-              <p>Descrição: Palestra com especialistas sobre os desafios e avanços no tratamento do autismo.</p>
-          </div>
-          <div class="event">
-              <h3>Atividade Recreativa</h3>
-              <p>Data: 18 de Julho, 2024</p>
-              <p>Local: Parque Central</p>
-              <p>Descrição: Atividade recreativa para crianças com TEA e suas famílias.</p>
-          </div>
-          <div class="event">
-              <h3>Seminário Educacional</h3>
-              <p>Data: 5 de Agosto, 2024</p>
-              <p>Local: Universidade X</p>
-              <p>Descrição: Seminário sobre técnicas de ensino para crianças com TEA.</p>
-          </div>
-          </div>
+
+          <ul class="events-container" id="lista-eventos"></ul>
       </section>
       
 
@@ -432,6 +360,66 @@
     <footer class="footer">
         <p>Casa Azul © Todos os direitos reservados.</p>
     </footer>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBnZ5hjZkaSYWCyFTFlX8oj0R2oTmoG8JQ",
+      authDomain: "site-casa-azul.firebaseapp.com",
+      projectId: "site-casa-azul",
+      storageBucket: "site-casa-azul.appspot.com",
+      messagingSenderId: "767221469467",
+      appId: "1:767221469467:web:adba4b662835c9188143be"
+    };
+
+
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    function exibirUltimosEventos() {
+      db.collection("Eventos")
+        .orderBy("data", "desc")
+        .get()
+        .then(function (querySnapshot) {
+          const listaEventos = document.getElementById("lista-eventos");
+          listaEventos.innerHTML = "";
+          querySnapshot.forEach(function (doc) {
+            const evento = doc.data();
+            const eventDiv = document.createElement("div");
+            eventDiv.classList.add("event");
+
+            const eventName = document.createElement("h3");
+            eventName.textContent = `${evento.nome}`;
+
+            const eventDate = document.createElement("p");
+            eventDate.textContent = `Data: ${new Date(evento.data).toLocaleDateString("pt-BR")}`;
+
+            const eventLocation = document.createElement("p");
+            eventLocation.textContent = `Local: ${evento.local}`;
+
+            const eventDescription = document.createElement("p");
+            eventDescription.textContent = `Descrição: ${evento.descricao}`;
+
+            eventDiv.appendChild(eventName);
+            eventDiv.appendChild(eventDate);
+            eventDiv.appendChild(eventLocation);
+            eventDiv.appendChild(eventDescription);
+
+            listaEventos.appendChild(eventDiv);
+          });
+        })
+        .catch(function (error) {
+          console.error("Erro ao buscar os últimos eventos: ", error);
+        });
+    }
+
+    exibirUltimosEventos();
+
+  </script>
 
 </body>
 </html>
