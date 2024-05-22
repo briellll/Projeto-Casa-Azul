@@ -319,6 +319,8 @@
                 Explore nossos projetos e descubra como estamos fazendo a diferença na vida de muitas pessoas.
               </p>
               </div>
+            <ul class="events-container" id="lista-projetos"></ul>
+
           </section>
 
         <!--Como doar-->
@@ -417,6 +419,38 @@
         });
     }
 
+    function exibirUltimosProjetos() {
+      db.collection("Projetos")
+        .orderBy("nome", "desc")
+        .limit(4)
+        .get()
+        .then(function (querySnapshot) {
+          const listaProjetos = document.getElementById("lista-projetos");
+          listaProjetos.innerHTML = "";
+          querySnapshot.forEach(function (doc) {
+            const projeto = doc.data();
+            const projetoDiv = document.createElement("div");
+            projetoDiv.classList.add("event");
+
+            const projectName = document.createElement("h3");
+            projectName.textContent = `${projeto.nome}`;
+
+            const projectDescription = document.createElement("p");
+            projectDescription.textContent = `Descrição: ${projeto.descricao}`;
+
+            projetoDiv.appendChild(projectName);
+            projetoDiv.appendChild(projectDescription);
+
+            listaProjetos.appendChild(projetoDiv);
+          });
+        })
+        .catch(function (error) {
+          console.error("Erro ao buscar os últimos eventos: ", error);
+        });
+    }
+
+    exibirUltimosProjetos();
+    
     exibirUltimosEventos();
 
   </script>
