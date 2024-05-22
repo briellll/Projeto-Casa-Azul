@@ -144,7 +144,7 @@
         .get()
         .then(function (querySnapshot) {
           const listaEventos = document.getElementById("lista-eventos");
-          listaEventos.innerHTML = "";  // Limpe a lista atual
+          listaEventos.innerHTML = "";
           querySnapshot.forEach(function (doc) {
             const evento = doc.data();
             const eventDiv = document.createElement("div");

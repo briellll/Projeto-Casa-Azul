@@ -1,11 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Eventos</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
-    <h1>Projeto</h1>
+  <!--Barra de Navegação-->
+  <nav id="navbar-scroll" class="navbar">
+
+    <h1 class="logo">
+      <a href="../index.html">Casa Azul</a>
+    </h1>
+
+    <div id="menu">
+      <ul class="nav-menu">
+        <li class="nav-items">
+          <a href="../index.html#hero" class="nav-link active"><i class="nav-icon fas fa-home"></i>Home</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#atendimentos" class="nav-link"><i class="nav-icon fas fa-plus-square"></i>Atendimentos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#eventos" class="nav-link"><i class="nav-icon fas fa-calendar"></i>Eventos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#colaboradores" class="nav-link"><i class="nav-icon fas fa-users"></i>Colaboradores</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#direitos" class="nav-link"><i class="nav-icon fas fa-book"></i>Direitos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#projetos" class="nav-link"><i class="nav-icon fas fa-rss"></i>Projetos</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="../index.html#contact" class="nav-link"><i class="nav-icon fas fa-envelope"></i>Doações</a>
+        </li>
+
+        <li class="nav-items">
+          <a href="login/login.html" class="nav-link"><i class="nav-icon fas fa-user"></i>Login</a>
+        </li>
+
+        <div class="theme-switch-wrapper">
+          <i class="nav-icon fas fa-sun"></i>
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+          </label>
+          <i class="nav-icon fas fa-moon"></i>
+        </div>
+      </ul>
+
+  <!--Verificar-->
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav> 
+
+  <h1 id="titulo-cadastro">Cadastro de projetos</h1>
+
+  <form id="formulario-cadastro">
+    <label for="nomeProjeto">Nome do Projeto:</label>
+    <input type="text" id="nomeProjeto" name="nomeProjeto" required><br>
+
+    <label for="descricaoProjeto">Descrição do Projeto:</label>
+    <textarea id="descricaoProjeto" name="descricaoProjeto" rows="5" required></textarea><br>
+
+    <button type="submit">Cadastrar novo projeto</button>
+  </form>
+
+  <h2>Eventos recentes</h2>
+  <ul class="events-container" id="lista-projetos"></ul>
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBnZ5hjZkaSYWCyFTFlX8oj0R2oTmoG8JQ",
+      authDomain: "site-casa-azul.firebaseapp.com",
+      projectId: "site-casa-azul",
+      storageBucket: "site-casa-azul.appspot.com",
+      messagingSenderId: "767221469467",
+      appId: "1:767221469467:web:adba4b662835c9188143be"
+    };
+
+
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    document.getElementById("formulario-cadastro").addEventListener("submit", function (event) {
+      event.preventDefault(); 
+
+      const nomeProjeto = document.getElementById("nomeProjeto").value;
+      const descricaoProjeto = document.getElementById("descricaoProjeto").value;
+
+      db.collection("Projetos").doc(nomeProjeto).set({
+        nome: nomeProjeto,
+        descricao: descricaoProjeto
+      })
+        .then(function () {
+          console.log("Documento adicionado com Sucesso");
+          document.getElementById("formulario-cadastro").reset();
+          location.reload();
+        })
+        .catch(function (error) {
+          console.error("Erro ao adicionar documento: ", error);
+        });
+    });
+
+    function exibirUltimosProjetos() {
+      db.collection("Projetos")
+        .orderBy("nome", "desc")
+        .limit(4)
+        .get()
+        .then(function (querySnapshot) {
+          const listaProjetos = document.getElementById("lista-projetos");
+          listaProjetos.innerHTML = "";
+          querySnapshot.forEach(function (doc) {
+            const projeto = doc.data();
+            const projetoDiv = document.createElement("div");
+            projetoDiv.classList.add("event");
+
+            const projectName = document.createElement("h3");
+            projectName.textContent = `Nome: ${projeto.nome}`;
+
+            const projectDescription = document.createElement("p");
+            projectDescription.textContent = `Descrição: ${projeto.descricao}`;
+
+            projetoDiv.appendChild(projectName);
+            projetoDiv.appendChild(projectDescription);
+
+            listaProjetos.appendChild(projetoDiv);
+          });
+        })
+        .catch(function (error) {
+          console.error("Erro ao buscar os últimos eventos: ", error);
+        });
+    }
+
+    exibirUltimosProjetos();
+
+  </script>
 </body>
+
 </html>
