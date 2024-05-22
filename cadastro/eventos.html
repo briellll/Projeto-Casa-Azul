@@ -91,7 +91,7 @@
   </form>
 
   <h2>Eventos recentes</h2>
-  <ul id="lista-eventos"></ul>
+  <ul class="events-container" id="lista-eventos"></ul>
 
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
@@ -140,20 +140,38 @@
     function exibirUltimosEventos() {
       db.collection("Eventos")
         .orderBy("data", "desc")
-        .limit(5)
+        .limit(4)
         .get()
         .then(function (querySnapshot) {
           const listaEventos = document.getElementById("lista-eventos");
-          listaEventos.innerHTML = ""; 
+          listaEventos.innerHTML = "";  // Limpe a lista atual
           querySnapshot.forEach(function (doc) {
             const evento = doc.data();
-            const li = document.createElement("li");
-            li.textContent = `Nome: ${evento.nome}, Data: ${evento.data}, Hora: ${evento.hora}, Local: ${evento.local}, Descrição: ${evento.descricao}`;
-            listaEventos.appendChild(li);
+            const eventDiv = document.createElement("div");
+            eventDiv.classList.add("event");
+
+            const eventName = document.createElement("h3");
+            eventName.textContent = `Nome: ${evento.nome}`;
+
+            const eventDate = document.createElement("p");
+            eventDate.textContent = `Data: ${new Date(evento.data).toLocaleDateString("pt-BR")}`;
+
+            const eventLocation = document.createElement("p");
+            eventLocation.textContent = `Local: ${evento.local}`;
+
+            const eventDescription = document.createElement("p");
+            eventDescription.textContent = `Descrição: ${evento.descricao}`;
+
+            eventDiv.appendChild(eventName);
+            eventDiv.appendChild(eventDate);
+            eventDiv.appendChild(eventLocation);
+            eventDiv.appendChild(eventDescription);
+
+            listaEventos.appendChild(eventDiv);
           });
         })
         .catch(function (error) {
-          console.error("Erro ao buscar documentos: ", error);
+          console.error("Erro ao buscar os últimos eventos: ", error);
         });
     }
 
