@@ -212,6 +212,8 @@
                 vidas e construindo uma comunidade mais inclusiva.
             </p>
             </div>
+            <ul class="events-container" id="lista-colaboradores"></ul>
+
         </section>
 
         <!--Direitos-->
@@ -448,6 +450,37 @@
           console.error("Erro ao buscar os últimos eventos: ", error);
         });
     }
+
+    function exibirColaboradores() {
+      db.collection("Colaboradores")
+        .orderBy("nome", "desc")
+        .get()
+        .then(function (querySnapshot) {
+          const listaColaboradores = document.getElementById("lista-colaboradores");
+          listaColaboradores.innerHTML = "";
+          querySnapshot.forEach(function (doc) {
+            const colab = doc.data();
+            const colabDiv = document.createElement("div");
+            colabDiv.classList.add("event");
+
+            const colabName = document.createElement("h3");
+            colabName.textContent = `${colab.nome}`;
+
+            const colabCargo = document.createElement("p");
+            colabCargo.textContent = `Cargo: ${colab.cargo}`;
+
+            colabDiv.appendChild(colabName);
+            colabDiv.appendChild(colabCargo);
+
+            listaColaboradores.appendChild(colabDiv);
+          });
+        })
+        .catch(function (error) {
+          console.error("Erro ao buscar os últimos eventos: ", error);
+        });
+    }
+
+    exibirColaboradores();
 
     exibirUltimosProjetos();
     
